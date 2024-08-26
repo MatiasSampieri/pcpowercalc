@@ -25,7 +25,7 @@ $(document).ready(function () {
         }
 
         const type = $('#pc-type').val()
-        if (type == 'laptop') {
+        if (!sabe && type == 'laptop') {
             watts = '80'
         }
 
