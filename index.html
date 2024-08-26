@@ -11,9 +11,9 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
 
-  <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
-  <link rel="script" href="app.js">
+  <script src="app.js"></script> 
 
   <title>PC Carbon Calc</title>
 </head>
@@ -27,26 +27,29 @@
         al año y cuantos arboles tenes que plantar para compensarlo.</p>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">
-        <div class="input-group mb-3">
-          <input class="form-control" type="number" placeholder="Watts de la fuente de tu PC" min="0" max="3000" id="watts">
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" id="no-sabe">No lo se</button>
+      <form id="frm">
+        <li class="list-group-item">
+          <div class="input-group mb-3">
+            <input class="form-control" type="number" placeholder="Watts de la fuente de tu PC" min="0" max="3000" id="watts">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button" id="no-sabe">No lo se</button>
+            </div>
           </div>
-        </div>
 
-        <label for="pc-type">¿Que tipo de compu es?</label>
-        <select id="pc-type" class="form-control">
-          <option value="desktop">PC de escritorio</option>
-          <option value="laptop">Laptop/Notebook</option>
-        </select> 
-      </li>
-      <li class="list-group-item">
-        <button class="btn btn-success" type="button" id="calc">Calcular</button>
-      </li>
+          <label for="pc-type">¿Que tipo de compu es?</label>
+          <select id="pc-type" class="form-control">
+            <option value="desktop">PC de escritorio</option>
+            <option value="laptop">Laptop/Notebook</option>
+          </select> 
+          
+        </li>
+        <li class="list-group-item">
+          <button class="btn btn-success" type="submit" id="calc">Calcular</button>
+        </li>
+      </form>
     </ul>
     <div class="card-body" id="resultados" hidden>
-      <h4 class="card-subtitle" id="txt-resultado">Tu pc consume</h4>
+      <h4 class="card-subtitle" id="txt-resultado">-</h4>
     </div>
   </div>
 </body>
