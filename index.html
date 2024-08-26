@@ -9,8 +9,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
   <script src="app.js"></script> 
 
@@ -25,22 +26,25 @@
       <p class="card-text">Ingresa la potencia que consume tu pc y te diremos cuanto CO2 emite
         al año y cuantos arboles tenes que plantar para compensarlo.</p>
     </div>
-    <ul class="list-group list-group-flush">
+    <ul class="list-group list-group-flush" id="main">
       <form id="frm">
         <li class="list-group-item">
+          <label for="pc-type">¿Cuanto consume tu compu?</label>
           <div class="input-group mb-3">
-            <input class="form-control" type="number" placeholder="Watts de la fuente de tu PC" min="0" max="3000" id="watts">
+            <input class="form-control" type="number" placeholder="Watts de la fuente de tu PC" min="1" max="80000" id="watts">
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" type="button" id="no-sabe">No lo se</button>
             </div>
           </div>
 
           <label for="pc-type">¿Que tipo de compu es?</label>
-          <select id="pc-type" class="form-control">
+          <select id="pc-type" class="form-control mb-3">
             <option value="desktop">PC de escritorio</option>
             <option value="laptop">Laptop/Notebook</option>
           </select> 
-          
+
+          <label for="pc-type">¿Cuanto usas tu compu?</label>
+          <input class="form-control" type="number" placeholder="Horas aprox. por dia" min="0" max="24" id="horas" required>  
         </li>
         <li class="list-group-item">
           <button class="btn btn-success" type="submit" id="calc">Calcular</button>
@@ -48,7 +52,11 @@
       </form>
     </ul>
     <div class="card-body" id="resultados" hidden>
-      <h4 class="card-subtitle" id="txt-resultado">-</h4>
+      <div class="p-3 mb-2 bg-success text-white rounded" id="txt-resultado">-</div>
+      <div class="p-3 mb-2 bg-secondary text-white rounded">
+        <p id="arboles"></p>
+        <div class="container" id="arbolitos-iconos"></div>
+      </div>
     </div>
   </div>
 </body>

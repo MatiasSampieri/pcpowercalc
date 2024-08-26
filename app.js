@@ -30,14 +30,31 @@ $(document).ready(function () {
         }
 
         watts = parseInt(watts)
-        const co2 = watts * 60 * 52 * 0.0003966
+        const hs = parseInt($('#horas').val()) 
+        const kwh = (watts/1000) * hs
+        const co2 = kwh * 365 * 0.0003966
+        const co2_redond = Math.round(co2 * 100000) / 100000
         
-        $('#txt-resultado').text(`Tu computadora consume ${co2} TCO2e al año`)
+        const trees = co2 / 0.340
+        const trees_redond = Math.round(trees * 1000) / 1000
+
+        $('#txt-resultado').html(`Tu compu consume <i>${co2_redond}</i> TCO2 al año`)
         $('#resultados').prop('hidden', false)
+        $('#main').prop('hidden', true)
+        $('#arboles').text(`Se necesitan ${trees_redond} arboles para compensarlo`)
 
+        let arbolitos = ''
 
-        saveData({type, watts, co2})
-        //$.get("https://52e5imxbftoafjuq22sekscfci0fqcuy.lambda-url.sa-east-1.on.aws/emissions").then(z=>console.log(z))
+        for (let i = 0; i < Math.floor(trees); i++) {
+            arbolitos += '<i class="fa-solid fa-tree m-1" style="overflow: hidden; width: 16px;"></i>'
+        }
+
+        const crop = (trees - Math.floor(trees)) * 14
+        arbolitos += `<i class="fa-solid fa-tree m-1" style="overflow: hidden; width: ${crop}px;"></i>`
+
+        $('#arbolitos-iconos').html(arbolitos)
+
+        saveData({type, watts, co2, trees})
     })
 })
 

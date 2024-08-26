@@ -23,7 +23,8 @@ def lambda_handler(event, context):
                     'id': Decimal(str(time.time())),
                     'watts': data['watts'],
                     'type': data['type'],
-                    'co2': Decimal(str(data['co2']))
+                    'co2': Decimal(str(data['co2'])),
+                    'trees': Decimal(str(data['trees']))
                 })
             body = 'Saved successfully!'
         
@@ -36,9 +37,20 @@ def lambda_handler(event, context):
             for item in body:
                 res.append({'watts': int(item['watts']), 
                             'type': item['type'], 
-                            'co2': float(item['co2'])})
+                            'co2': float(item['co2']), 
+                            'trees': float(item['trees'])})
             
             body = res
+            
+        if request['path'] == '/emissions' and request['method'] == 'DELETE':
+            res = table.scan(ProjectionExpression='id')
+            items = res['Items']
+            
+            for idd in items:
+                table.delete_item(Key={'id': idd['id']})
+                
+            body = 'Items deleted: ' + str(res['Count'])
+            
             
     except KeyError:
         status = 404
@@ -46,7 +58,7 @@ def lambda_handler(event, context):
         
     except Exception as e:
         status = 503
-        body = 'Error'
+        body = str(e)
     
     return {
         'statusCode': status,
