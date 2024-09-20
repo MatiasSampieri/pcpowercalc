@@ -3,7 +3,7 @@ let sabe = true
 function saveData(data) {
     $.ajax({
         type: 'POST',
-        url: 'https://52e5imxbftoafjuq22sekscfci0fqcuy.lambda-url.sa-east-1.on.aws/emissions',
+        url: 'https://l0br5kqg16.execute-api.sa-east-1.amazonaws.com/v1/emissions',
         data: JSON.stringify(data),
         dataType: 'text',
         contentType: 'text/plain'
