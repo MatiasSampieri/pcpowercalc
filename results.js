@@ -14,12 +14,10 @@ function updateData() {
             trees += item.trees
         }
 
-        watts = watts/1000
-
         $('#cant').text(body.length)
         $('#watts').text(watts)
         $('#co2').text(Math.round(TCO2))
-        $('#trees').text(trees)
+        $('#trees').text(Math.round(trees * 1000) / 1000)
 
         let arbolitos = ''
 
