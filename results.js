@@ -1,5 +1,6 @@
 setInterval(updateData, 10000)
 
+updateData()
 function updateData() {
     $.get("https://l0br5kqg16.execute-api.sa-east-1.amazonaws.com/v1/emissions", (data, status) => {
         const body = JSON.parse(data)
